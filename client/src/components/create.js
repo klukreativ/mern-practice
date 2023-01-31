@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router";
+import Form from 'react-bootstrap/Form';
+import Button from 'react-bootstrap/Button';
 
 export default function Create() {
     const [form, setForm] = useState({
@@ -38,77 +40,50 @@ export default function Create() {
     }
 
     return (
-        <div className="col-10 col-lg-4 container-fluid justify-content-center card my-5 p-3">
-            <h3 className="text-center pt-3">Create New Record</h3>
-            <form onSubmit={handleSubmit}>
-                <div className="form-group">
-                    <label htmlFor="name" className="py-3">Name</label>
-                    <input
+            <Form onSubmit={handleSubmit} className="col-10 col-lg-4 container-fluid justify-content-center card my-5 p-3">
+                <h3 className="text-center pt-3">Create New Record</h3>
+                <Form.Group
+                    className="mb-3"
+                    controlId="name">
+                    <Form.Label>Name</Form.Label>
+                    <Form.Control
                         type="text"
-                        className="form-control"
-                        id="name"
+                        placeholder="Name"
                         value={form.name}
                         onChange={(e) => updateForm({ name: e.target.value })}
                     />
-                </div>
-                <div className="form-group">
-                    <label htmlFor="position" className="py-3">Position</label>
-                    <input
+                </Form.Group>
+                <Form.Group
+                    className="mb-3"
+                    controlId="formPosition">
+                    <Form.Label>Position</Form.Label>
+                    <Form.Control
                         type="text"
-                        className="form-control"
-                        id="position"
+                        placeholder="Position"
                         value={form.position}
                         onChange={(e) => updateForm({ position: e.target.value })}
                     />
-                </div>
-                <div className="form-group py-5 d-flex justify-content-around">
-                    <div className="form-check form-check-inline">
-                        <input
-                            className="form-check-input"
+                </Form.Group>
+                <Form.Group
+                    className="py-3 d-flex justify-content-around" controlId="formLevel"
+                >
+                    {["Intern", "Junior", "Senior"].map((level) => (
+                        <Form.Check
+                            key={level}
+                            inline
                             type="radio"
+                            label={level}
                             name="positionOptions"
-                            id="positionIntern"
-                            value="Intern"
-                            checked={form.level === "Intern"}
+                            id={`position${level}`}
+                            value={level}
+                            checked={form.level === level}
                             onChange={(e) => updateForm({ level: e.target.value })}
                         />
-                        <label htmlFor="positionIntern" className="form-check-label">Intern</label>
-                    </div>
-
-                    <div className="form-check form-check-inline">
-                        <input
-                            className="form-check-input"
-                            type="radio"
-                            name="positionOptions"
-                            id="positionJunior"
-                            value="Junior"
-                            checked={form.level === "Junior"}
-                            onChange={(e) => updateForm({ level: e.target.value })}
-                        />
-                        <label htmlFor="positionJunior" className="form-check-label">Junior</label>
-                    </div>
-
-                    <div className="form-check form-check-inline">
-                        <input
-                            className="form-check-input"
-                            type="radio"
-                            name="positionOptions"
-                            id="positionSenior"
-                            value="Senior"
-                            checked={form.level === "Senior"}
-                            onChange={(e) => updateForm({ level: e.target.value })}
-                        />
-                        <label htmlFor="positionSenior" className="form-check-label">Senior</label>
-                    </div>
-                </div>
-                <div className="form-group text-center pb-5">
-                    <input
-                        type="submit"
-                        value="Create Person"
-                        className="btn btn-primary"
-                    />
-                </div>
-            </form>
-        </div>
+                    ))}
+                </Form.Group>
+                <Form.Group className="text-center py-3">
+                    <Button type="submit">Create Person</Button>
+                </Form.Group>
+            </Form>
     )
 }
