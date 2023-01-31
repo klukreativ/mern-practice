@@ -21,7 +21,7 @@ export default function Create() {
         // when a POST req is sent to the create URL, add new record to db
         const newPerson = { ...form };
 
-        await fetch("https://localhost:5000/record/add", {
+        await fetch("http://localhost:5000/record/add", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",

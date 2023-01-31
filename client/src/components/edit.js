@@ -14,7 +14,7 @@ export default function Edit() {
     useEffect(() => {
         const fetchData = async () => {
             const id = params.id.toString();
-            const response = await fetch(`https://localhost:5000/record/${params.id.toString()}`);
+            const response = await fetch(`http://localhost:5000/record/${params.id.toString()}`);
 
             if (!response.ok) {
                 const message = `An error has ocurred: ${response.statusText}`;
@@ -62,11 +62,11 @@ export default function Edit() {
     };
 
     return (
-        <div>
-            <h3>Update Record</h3>
+        <div className="col-10 col-lg-4 container-fluid justify-content-center card my-5 p-3">
+            <h3 className="text-center pt-3">Update Record</h3>
             <form onSubmit={handleSubmit}>
                 <div className="form-group">
-                    <label htmlFor="name">Name:</label>
+                    <label htmlFor="name" className="py-3">Name:</label>
                     <input
                         type="text"
                         className="form-control"
@@ -77,7 +77,7 @@ export default function Edit() {
                     </input>
                 </div>
                 <div className="form-group">
-                    <label htmlFor="position">Position:</label>
+                    <label htmlFor="position" className="py-3">Position:</label>
                     <input
                         type="text"
                         className="form-control"
@@ -86,7 +86,7 @@ export default function Edit() {
                         onChange={(e) => updateForm({ position: e.target.value })}
                     ></input>
                 </div>
-                <div className="form-group">
+                <div className="form-group py-5 d-flex justify-content-around">
                     <div className="form-check form-check-inline">
                         <input
                             className="form-check-input"
@@ -124,8 +124,7 @@ export default function Edit() {
                         <label htmlFor="positionSenior" className="form-check-label">Junior</label>
                     </div>
                 </div>
-                <br />
-                <div className="form-group">
+                <div className="form-group text-center pb-3">
                     <input
                         type="submit"
                         value="Update Record"

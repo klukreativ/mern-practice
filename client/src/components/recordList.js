@@ -3,11 +3,11 @@ import { Link } from "react-router-dom";
 
 const Record = (props) => (
     <tr className="row justify-content-around">
-        <td className="col">{props.record.name}</td>
+        <td className="col align-middle">{props.record.name}</td>
         <td className="col">{props.record.position}</td>
-        <td>{props.record.level}</td>
-        <td>
-            <Link className="btn btn-link" to={`/edit/#{props.record._id}`}>Edit</Link>
+        <td className="col">{props.record.level}</td>
+        <td className="col">
+            <Link className="btn btn-link" to={`/edit/${props.record._id}`}>Edit</Link>
             |
             <button className="btn btn-link" onClick={() => { props.deleteRecord(props.record._id); }}>Delete</button>
         </td>
@@ -38,13 +38,14 @@ export default function RecordList() {
     }, [records.length])
 
     // method to delete record
-    const deleteRecord = async (id) => {
-        await fetch(`https://localhost:5000/${id}`, {
-            method: "DELETE"
+    async function deleteRecord(id) {
+        await fetch(`http://localhost:5000/${id}`, {
+          method: "DELETE"
         });
+      
         const newRecords = records.filter((el) => el._id !== id);
         setRecords(newRecords);
-    }
+      }
 
     // maps record to table
     const recordList = () => {
