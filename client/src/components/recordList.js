@@ -62,7 +62,7 @@ export default function RecordList() {
 
     //displays table with records of individuals
     return (
-        <div className="container-fluid text-center justify-content-center p-5">
+        <div className="container-fluid text-center justify-content-center pt-5 p-lg-5">
             <h3>Record List</h3>
             <table className="table table-striped" style={{ marginTop: 20 }}>
                 <thead>
